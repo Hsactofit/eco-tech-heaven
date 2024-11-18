@@ -1,29 +1,52 @@
+/* General container styling */
 .search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    max-width: 650px;
-    height: 40px;
-    padding:15px;
-    border-radius: 20px;
-    background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
 }
 
-input[type="text"] {
-    width: 100%;
-    height: 100%;
-    padding: 8px;
-    border: none;
-    font-size: 16px;
-    color: #333;
-    outline: none;
-    background:transparent;
+/* Main search bar styling */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 500px;
+  transition: all 0.3s ease;
 }
 
+.search-bar:hover {
+  border-color: #1229da;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Search icon styling */
 .search-icon {
-    position: absolute;
-    right: 0;
-    font-size: 20px;
-    color: #999;
-    cursor: pointer;
+  font-size: 1.2rem;
+  color: #888;
+  margin-right: 0.5rem;
+}
+
+/* Search input styling */
+.search-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #333;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.search-input:focus::placeholder {
+  color: transparent;
 }

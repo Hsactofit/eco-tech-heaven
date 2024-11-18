@@ -1,103 +1,222 @@
+/* Product Image */
 .product img {
-    width: 100%;
-    height: 200px !important;
-    object-fit: contain;
-    cursor: pointer;
+  width: 100%;
+  height: 200px !important;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }
 
+/* Discount Badge */
 .discount {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #0f3460;
-    padding: 3px 10px;
-    font-size: 12px;
-    border-radius: 50px;
-    color: #fff;
-    margin: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e94560;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Product Card */
 .product {
-    background: #fff;
-    padding: 20px;
-    position: relative;
-    border-radius: 8px;
-    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
-    margin: 10px;
+  background: #fff;
+  padding: 20px;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+  margin: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Hover Effect on Product Card */
+.product:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Title */
 .product h3 {
-    margin: 10px 0;
-    font-weight: 500;
-    font-size: 17px;
-    cursor: pointer;
+  margin: 10px 0;
+  font-weight: 500;
+  font-size: 17px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
 }
 
+.product h3:hover {
+  color: #e94560;
+}
+
+/* Product Rating */
 .product .rate i {
-    font-size: 15px;
-    color: #ffcd4e;
-    margin: 5px 5px 5px 0;
+  font-size: 15px;
+  color: #ffcd4e;
+  margin: 5px 5px 5px 0;
 }
 
+/* Price Section */
 .product .price {
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  margin-top: 10px;
 }
 
 .price h4 {
-    margin: 20px 0 10px;
+  margin: 20px 0 10px;
+  font-size: 18px;
+  color: #0f3460;
 }
 
+/* Add to Cart Button */
 .price button {
-    background: none;
-    color: #0f3460;
-    font-size: 20px;
-    transition: 0.5s;
-    border: 1px solid rgb(3 0 71 / 9%);
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
+  background: none;
+  color: #0f3460;
+  font-size: 20px;
+  transition: 0.5s;
+  border: 1px solid rgb(3 0 71 / 9%);
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
 }
 
 .price button:hover {
-    cursor: pointer;
-    background-color: #0f3460;
-    color: #fff;
+  cursor: pointer;
+  background-color: #0f3460;
+  color: #fff;
 }
 
-button.add {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    border-radius: 50%;
-}
-
+/* Heart Icon for Wishlist */
 .product-like {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    opacity: 0;
-    transition: 0.5s;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.product-like label {
-    background-color: #0f3460;
-    padding: 1px 10px;
-    font-size: 12px;
-    color: white;
-    border-radius: 50px;
+.product-like:hover {
+  background: #ff6961; /* Hover color */
+  transform: scale(1.1);
 }
 
+/* Heart Icon Styling */
 .product-like ion-icon {
-    font-size: 20px;
-    margin: 10px 3px;
-    cursor: pointer;
+  font-size: 18px;
+  color: #ff6961; /* Icon color */
 }
 
-.product:hover .product-like {
-    opacity: 1;
+/* Icon Hover */
+.product-like:hover ion-icon {
+  color: white;
+}
+
+/* Product Image Hover Effects */
+.product-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.product-image:hover img {
+  transform: scale(1.1);
+}
+
+/* Product Details */
+.product-details {
+  padding: 15px;
+  text-align: center;
+}
+
+/* Product Title */
+.product-title {
+  font-size: 18px;
+  color: #0f3460;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.product-title:hover {
+  color: #e94560;
+}
+
+/* Product Price Section */
+.product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price h4 {
+  font-size: 20px;
+  color: #0f3460;
+}
+
+/* Add to Cart Button Styling */
+.add-to-cart-btn {
+  background: #0f3460;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background: #e94560;
+}
+
+/* Hover Effect on Product Card */
+.product-card {
+  margin: 15px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Discount Badge */
+.product-discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e94560;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
 }

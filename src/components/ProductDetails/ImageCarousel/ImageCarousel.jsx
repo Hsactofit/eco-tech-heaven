@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -24,18 +24,39 @@ const ImageCarousel = ({ images }) => {
     asNavFor: mainSliderRef.current, // Sync with the main slider
     arrows: true, // Show arrows on the thumbnail slider
     swipeToSlide: true,
+    focusOnSelect: true, // Makes sure thumbnails update when clicked
+    responsive: [
+      {
+        breakpoint: 768, // For mobile devices
+        settings: {
+          slidesToShow: 3, // Show 3 thumbnails on small screens
+          centerMode: false, // Disable center mode on smaller screens
+        },
+      },
+    ],
   };
+
+  // Initialize the sliders once the component is mounted
+  useEffect(() => {
+    if (thumbnailSliderRef.current) {
+      thumbnailSliderRef.current.slickGoTo(0); // Set the initial slide for thumbnail slider
+    }
+  }, [images]);
 
   return (
     <div className="carousel-container">
       {/* Main Image Display */}
       <div className="main-slider">
-        <img src={selectedImage} alt="Selected" className="main-image" />
+        <img
+          src={selectedImage}
+          alt="Selected"
+          className="main-image"
+          style={{ transition: 'transform 0.3s ease' }}
+        />
       </div>
 
-      {/* Conditional Rendering */}
+      {/* Conditional Rendering for Thumbnail Carousel */}
       {images.length >= 5 ? (
-        // If images are 5 or more, use the thumbnail carousel
         <Slider {...thumbnailSliderSettings} ref={thumbnailSliderRef} className="thumbnail-slider">
           {images.map((image, index) => (
             <div key={index} onClick={() => setSelectedImage(image)}>
@@ -43,14 +64,20 @@ const ImageCarousel = ({ images }) => {
                 src={image}
                 alt={`Thumbnail ${index}`}
                 className={`thumbnail ${selectedImage === image ? 'active-thumbnail' : ''}`}
-                style={{ width: '80px', height: 'auto', cursor: 'pointer' }}
+                style={{ 
+                  width: '80px', 
+                  height: 'auto', 
+                  cursor: 'pointer',
+                  border: selectedImage === image ? '2px solid #e94560' : '2px solid transparent',
+                  boxShadow: selectedImage === image ? '0 4px 8px rgba(0, 0, 0, 0.2)' : 'none',
+                  transition: 'border 0.3s ease, box-shadow 0.3s ease',
+                }}
               />
             </div>
           ))}
         </Slider>
       ) : (
-        // If less than 5 images, show them as static thumbnails without carousel
-        <div className="thumbnail-list">
+        <div className="thumbnail-list flex">
           {images.map((image, index) => (
             <img
               key={index}
@@ -58,7 +85,15 @@ const ImageCarousel = ({ images }) => {
               alt={`Thumbnail ${index}`}
               onClick={() => setSelectedImage(image)}
               className={`thumbnail ${selectedImage === image ? 'active-thumbnail' : ''}`}
-              style={{ width: '80px', height: 'auto', cursor: 'pointer', marginRight: '10px' }}
+              style={{
+                width: '80px',
+                height: 'auto',
+                cursor: 'pointer',
+                marginRight: '10px',
+                border: selectedImage === image ? '2px solid #e94560' : '2px solid transparent',
+                boxShadow: selectedImage === image ? '0 4px 8px rgba(0, 0, 0, 0.2)' : 'none',
+                transition: 'border 0.3s ease, box-shadow 0.3s ease',
+              }}
             />
           ))}
         </div>
