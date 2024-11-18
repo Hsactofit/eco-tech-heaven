@@ -1,0 +1,38 @@
+.counter-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between buttons and count display */
+}
+
+.counter-button {
+  width: 2.5rem; /* Width of circular button */
+  height: 2.5rem; /* Height of circular button */
+  border-radius: 50%; /* Make button circular */
+  background-color: #f0fdf4; /* Light green background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.counter-button span {
+  color: #22c55e; /* Green text color */
+  font-size: 1.25rem; /* Font size for plus/minus icons */
+}
+
+.counter-display {
+  width: 3rem; /* Width of display box */
+  height: 2.5rem; /* Height of display box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d1d5db; /* Light gray border */
+  background-color: #f9fafb; /* Light gray background */
+  color: #4b5563; /* Dark gray text color */
+  font-size: 1rem; /* Font size for count */
+}
+.counter-button:disabled {
+  background-color: #e0e0e0; /* Gray background when disabled */
+  color: #9e9e9e; /* Gray text color */
+}

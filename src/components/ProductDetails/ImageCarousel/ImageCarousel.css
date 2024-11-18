@@ -1,0 +1,44 @@
+/* Main Carousel Styling */
+.carousel-container {
+    width: 100%; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-slider {
+    width: 80%; /* Set the width of the main image */
+    margin-bottom: 20px; /* Add spacing between main image and thumbnails */
+  }
+  
+  .main-image {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Thumbnail Slider Styling */
+  .thumbnail-slider {
+    width: 80%; /* Set the width of the thumbnail carousel */
+    margin-top: 10px;
+  }
+  
+  .thumbnail {
+    width: 100%; /* Set thumbnail width */
+    height: 100px; /* Set thumbnail height */
+    object-fit: cover; /* Thumbnails will cover their container */
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border 0.3s ease;
+  }
+  
+  .thumbnail:hover {
+    border: 2px solid #007bff; /* Highlight border on hover */
+  }
+  
+  .active-thumbnail {
+    border: 2px solid #007bff; /* Add a border for the active thumbnail */
+  }
+  
