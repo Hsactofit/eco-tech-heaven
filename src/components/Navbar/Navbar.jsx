@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Home, ShoppingCart, User, Heart } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Home, ShoppingCart, User, Heart, LogOut } from "lucide-react";
 
 const NavBar = () => {
   const { cartList } = useSelector((state) => state.cart);
   const [opacity, setOpacity] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,15 +16,16 @@ const NavBar = () => {
       setOpacity(newOpacity);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const linkClass = "flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200 no-underline";
+  const linkClass =
+    "flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200 no-underline";
 
   return (
     <div>
-      <nav 
+      <nav
         className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 transition-all duration-300"
         style={{ opacity }}
       >
@@ -31,8 +33,8 @@ const NavBar = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors duration-200 no-underline"
               >
                 Technology Heaven
@@ -64,19 +66,33 @@ const NavBar = () => {
                 <Heart className="w-4 h-4 mr-1" />
                 WishList
               </Link>
-              <Link to="/" className={linkClass}>
-                <User className="w-4 h-4 mr-1" />
-                Profile
-              </Link>
-              
-              {/* Authentication Buttons */}
-              <div className="flex items-center space-x-4">
-                <button className="text-gray-600 hover:text-gray-800 transition-colors duration-200">
-                  Login
+
+              {/* Profile Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center text-gray-600 hover:text-gray-800 focus:outline-none"
+                >
+                  <User className="w-4 h-4" />
                 </button>
-                <button className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors duration-200">
-                  Register
-                </button>
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                    <Link
+                      to="/profile/:id"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      onClick={() => {
+                        console.log("Sign Out clicked");
+                      }}
+                      className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -86,8 +102,18 @@ const NavBar = () => {
                 onClick={() => setIsOpen(true)}
                 className="p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100 focus:outline-none"
               >
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
             </div>
@@ -106,8 +132,18 @@ const NavBar = () => {
                   onClick={() => setIsOpen(false)}
                   className="p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100"
                 >
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -128,16 +164,23 @@ const NavBar = () => {
                   <Heart className="w-4 h-4 mr-2" />
                   WishList
                 </Link>
-                <Link to="/" className={`${linkClass} py-2`}>
+
+                {/* Account Icon Only */}
+                <button
+                  className={`${linkClass} py-2`}
+                  onClick={() => console.log("Account clicked")}
+                >
                   <User className="w-4 h-4 mr-2" />
-                  Profile
-                </Link>
-                <hr className="my-4" />
-                <button className="text-gray-600 hover:text-gray-800 transition-colors duration-200 py-2">
-                  Login
+                  Account
                 </button>
-                <button className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors duration-200">
-                  Register
+                <button
+                  onClick={() => {
+                    console.log("Sign Out clicked");
+                  }}
+                  className={`${linkClass} py-2`}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
                 </button>
               </div>
             </div>
